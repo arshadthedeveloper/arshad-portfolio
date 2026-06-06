@@ -115,25 +115,60 @@
             font-family: 'Geist', sans-serif;
         }
 
+        /* 3D Perspective Setup */
+        * {
+            perspective: 1000px;
+        }
+
+        /* Enhanced Glass Card with 3D Effects */
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         .glass-card:hover {
             background: rgba(255, 255, 255, 0.06);
             border-color: rgba(173, 198, 255, 0.3);
-            transform: translateY(-4px);
+            transform: translateY(-8px) rotateX(5deg) rotateZ(1deg);
+            box-shadow: 0 25px 60px rgba(173, 198, 255, 0.15),
+                        0 0 40px rgba(76, 215, 246, 0.1);
         }
 
+        /* 3D Project Cards */
+        .project-card {
+            transform-style: preserve-3d;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) rotateX(3deg) rotateY(2deg) scale(1.02);
+            box-shadow: 0 30px 80px rgba(173, 198, 255, 0.2),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .project-card:hover .project-image {
+            transform: translateZ(50px) scale(1.15);
+        }
+
+        .project-image {
+            transform-style: preserve-3d;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Gradient Text with 3D Depth */
         .gradient-text {
             background: linear-gradient(135deg, #adc6ff 0%, #4cd7f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(173, 198, 255, 0.3);
+            filter: drop-shadow(0 4px 8px rgba(76, 215, 246, 0.2));
         }
 
+        /* Enhanced Mesh Gradient */
         .mesh-gradient {
             position: fixed;
             top: 0;
@@ -145,10 +180,21 @@
                 radial-gradient(circle at 0% 0%, rgba(49, 49, 192, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 100% 100%, rgba(76, 215, 246, 0.1) 0%, transparent 50%);
             filter: blur(80px);
+            animation: gradientShift 15s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(20px, 20px) scale(1.05);
+            }
         }
 
         .timeline-line {
             background: linear-gradient(to bottom, transparent, #4d8eff, #4cd7f6, transparent);
+            box-shadow: 0 0 30px rgba(76, 215, 246, 0.3);
         }
 
         .spotlight {
@@ -158,27 +204,230 @@
             background: radial-gradient(circle, rgba(173, 198, 255, 0.08) 0%, transparent 70%);
             pointer-events: none;
             border-radius: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%) translateZ(100px);
             z-index: 0;
+            filter: drop-shadow(0 0 30px rgba(173, 198, 255, 0.15));
+            transition: all 0.1s ease-out;
         }
 
         .tech-badge {
             font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
-            padding: 2px 8px;
-            border-radius: 4px;
+            padding: 4px 10px;
+            border-radius: 6px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            transform: translateZ(20px);
+        }
+
+        .tech-badge:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: currentColor;
+            transform: translateZ(40px) scale(1.1);
+            box-shadow: 0 0 20px currentColor;
+        }
+
+        /* Parallax Effect */
+        .parallax {
+            transform: translateY(0);
+            transition: transform 0.5s ease-out;
+        }
+
+        /* Hero Section Enhancements */
+        .hero-title {
+            animation: titleFloat 3s ease-in-out infinite;
+            text-shadow: 0 10px 30px rgba(173, 198, 255, 0.2),
+                         0 5px 15px rgba(76, 215, 246, 0.15);
+        }
+
+        @keyframes titleFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Button 3D Effect */
+        .btn-3d {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .btn-3d:hover {
+            transform: translateY(-4px) translateZ(20px);
+            box-shadow: 0 20px 40px rgba(173, 198, 255, 0.25),
+                        0 0 60px rgba(76, 215, 246, 0.15);
+        }
+
+        .btn-3d:active {
+            transform: translateY(-2px) translateZ(10px);
+        }
+
+        /* Glow Animation */
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(173, 198, 255, 0.3),
+                           0 0 40px rgba(76, 215, 246, 0.1);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(173, 198, 255, 0.5),
+                           0 0 60px rgba(76, 215, 246, 0.2);
+            }
+        }
+
+        .glow {
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        /* Experience Timeline Node 3D */
+        .timeline-node {
+            transform-style: preserve-3d;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .timeline-node:hover {
+            transform: scale(1.8) translateZ(30px);
+            box-shadow: 0 0 40px currentColor,
+                        0 0 80px currentColor;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) translateZ(0);
+            }
+            50% {
+                transform: translateY(-20px) translateZ(20px);
+            }
+        }
+
+        .float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #adc6ff 0%, #4cd7f6 50%, #adc6ff 100%);
+            width: 0%;
+            z-index: 100;
+            box-shadow: 0 0 20px rgba(173, 198, 255, 0.5);
+        }
+
+        /* Section entrance animation */
+        .section-entrance {
+            animation: sectionEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            opacity: 0;
+        }
+
+        @keyframes sectionEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) rotateX(10deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+        }
+
+        /* Glassmorphism improvements */
+        .glass-enhanced {
+            background: rgba(20, 20, 40, 0.4);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(173, 198, 255, 0.15);
+        }
+
+        /* Hover lift effect for service cards */
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-style: preserve-3d;
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px) rotateY(2deg);
+            box-shadow: 0 20px 50px rgba(173, 198, 255, 0.15),
+                        0 0 40px rgba(76, 215, 246, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Tech stack icon hover effect */
+        .tech-item {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-style: preserve-3d;
+        }
+
+        .tech-item:hover {
+            transform: scale(1.2) rotateY(15deg) translateZ(20px);
+        }
+
+        .tech-item:hover .tech-icon {
+            box-shadow: 0 0 30px rgba(173, 198, 255, 0.4),
+                        inset 0 0 20px rgba(173, 198, 255, 0.1);
+        }
+
+        /* Cursor glow effect */
+        .cursor-glow {
+            pointer-events: none;
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(173, 198, 255, 0.05) 0%, transparent 70%);
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            filter: blur(60px);
+        }
+
+        /* Navigation enhancement */
+        nav {
+            position: relative;
+            z-index: 50;
+            backdrop-filter: blur(20px);
+        }
+
+        nav a {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #adc6ff 0%, #4cd7f6 100%);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(173, 198, 255, 0.5);
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
     </style>
 </head>
 
 <body class="selection:bg-primary-container selection:text-on-primary-container">
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Cursor Glow -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
     <div class="mesh-gradient"></div>
     <!-- TopNavBar -->
-    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/80 backdrop-blur-[15px] border-b border-white/5">
+    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/80 border-b border-white/5">
         <div class="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
-            <a class="font-headline-md text-headline-md font-bold tracking-tighter text-on-surface"
+            <a class="font-headline-md text-headline-md font-bold tracking-tighter text-on-surface hover:text-primary transition-all"
                 href="#">ARSHAD.DEV</a>
             <div class="hidden md:flex items-center gap-8">
                 <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-all duration-300"
@@ -193,7 +442,7 @@
                     href="#contact">Contact</a>
             </div>
             <button
-                class="bg-primary text-on-primary font-bold px-6 py-2 rounded-lg hover:scale-105 active:scale-95 transition-all">
+                class="btn-3d bg-primary text-on-primary font-bold px-6 py-2 rounded-lg hover:brightness-110 active:scale-95 transition-all">
                 Hire Me
             </button>
         </div>
@@ -201,12 +450,12 @@
     <main class="pt-16">
         <!-- Hero Section -->
         <section
-            class="min-h-screen flex flex-col justify-center items-center px-gutter text-center relative overflow-hidden">
+            class="min-h-screen flex flex-col justify-center items-center px-gutter text-center relative overflow-hidden section-entrance">
             <div class="max-w-4xl z-10">
-                <p class="font-label-sm text-label-sm text-primary mb-4 tracking-[0.2em] uppercase">Senior Full Stack
+                <p class="font-label-sm text-label-sm text-primary mb-4 tracking-[0.2em] uppercase float">Senior Full Stack
                     Developer</p>
                 <h1
-                    class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight">
+                    class="hero-title font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight">
                     Hi, I'm <span class="gradient-text">Arshad Khan</span>
                 </h1>
                 <p class="font-headline-md text-headline-md text-on-surface-variant mb-8 max-w-2xl mx-auto">
@@ -217,39 +466,39 @@
                     with surgical precision.
                 </p>
                 <div class="flex flex-col md:flex-row gap-4 justify-center">
-                    <a class="bg-gradient-to-r from-primary to-tertiary text-on-primary font-bold px-10 py-4 rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition-all flex items-center justify-center gap-2"
+                    <a class="btn-3d bg-gradient-to-r from-primary to-tertiary text-on-primary font-bold px-10 py-4 rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition-all flex items-center justify-center gap-2"
                         href="#work">
                         View Projects <span class="material-symbols-outlined">arrow_forward</span>
                     </a>
-                    <a class="bg-transparent border border-white/10 text-on-surface font-bold px-10 py-4 rounded-xl hover:bg-white/5 transition-all"
+                    <a class="btn-3d bg-transparent border border-white/10 text-on-surface font-bold px-10 py-4 rounded-xl hover:bg-white/5 transition-all"
                         href="#contact">
                         Contact Me
                     </a>
                 </div>
             </div>
-            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 float opacity-50">
                 <span class="material-symbols-outlined text-4xl">expand_more</span>
             </div>
         </section>
         <!-- Achievements Counter -->
-        <section class="py-section-gap px-gutter border-y border-white/5 bg-surface-container-lowest">
+        <section class="py-section-gap px-gutter border-y border-white/5 bg-surface-container-lowest section-entrance">
             <div class="max-w-container-max mx-auto grid grid-cols-2 md:grid-cols-4 gap-stack-lg text-center">
-                <div>
+                <div class="parallax">
                     <h3 class="font-display-lg-mobile text-display-lg-mobile text-primary font-bold">3+</h3>
                     <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Years
                         Experience</p>
                 </div>
-                <div>
+                <div class="parallax">
                     <h3 class="font-display-lg-mobile text-display-lg-mobile text-tertiary font-bold">10+</h3>
                     <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Projects
                         Completed</p>
                 </div>
-                <div>
+                <div class="parallax">
                     <h3 class="font-display-lg-mobile text-display-lg-mobile text-secondary font-bold">100+</h3>
                     <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">APIs
                         Developed</p>
                 </div>
-                <div>
+                <div class="parallax">
                     <h3 class="font-display-lg-mobile text-display-lg-mobile text-on-surface font-bold">10+</h3>
                     <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Techs
                         Mastered</p>
@@ -257,7 +506,7 @@
             </div>
         </section>
         <!-- About Me & Skills -->
-        <section class="py-section-gap px-gutter max-w-container-max mx-auto grid md:grid-cols-2 gap-20">
+        <section class="py-section-gap px-gutter max-w-container-max mx-auto grid md:grid-cols-2 gap-20 section-entrance">
             <div>
                 <h2 class="font-headline-md text-headline-md mb-8">Professional Summary</h2>
                 <div class="space-y-6 font-body-lg text-body-lg text-on-surface-variant">
@@ -280,7 +529,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <!-- Frontend -->
                 <div class="glass-card p-6 rounded-xl">
-                    <span class="material-symbols-outlined text-primary mb-4">devices</span>
+                    <span class="material-symbols-outlined text-primary mb-4 inline-block">devices</span>
                     <h4 class="font-headline-md text-body-lg font-bold mb-4">Frontend</h4>
                     <ul class="font-code-snippet text-code-snippet space-y-2 text-on-surface-variant">
                         <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
@@ -293,7 +542,7 @@
                 </div>
                 <!-- Backend -->
                 <div class="glass-card p-6 rounded-xl">
-                    <span class="material-symbols-outlined text-secondary mb-4">terminal</span>
+                    <span class="material-symbols-outlined text-secondary mb-4 inline-block">terminal</span>
                     <h4 class="font-headline-md text-body-lg font-bold mb-4">Backend</h4>
                     <ul class="font-code-snippet text-code-snippet space-y-2 text-on-surface-variant">
                         <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
@@ -306,7 +555,7 @@
                 </div>
                 <!-- Database -->
                 <div class="glass-card p-6 rounded-xl">
-                    <span class="material-symbols-outlined text-tertiary mb-4">database</span>
+                    <span class="material-symbols-outlined text-tertiary mb-4 inline-block">database</span>
                     <h4 class="font-headline-md text-body-lg font-bold mb-4">Databases</h4>
                     <ul class="font-code-snippet text-code-snippet space-y-2 text-on-surface-variant">
                         <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
@@ -319,7 +568,7 @@
                 </div>
                 <!-- DevOps -->
                 <div class="glass-card p-6 rounded-xl">
-                    <span class="material-symbols-outlined text-on-surface mb-4">cloud_sync</span>
+                    <span class="material-symbols-outlined text-on-surface mb-4 inline-block">cloud_sync</span>
                     <h4 class="font-headline-md text-body-lg font-bold mb-4">DevOps</h4>
                     <ul class="font-code-snippet text-code-snippet space-y-2 text-on-surface-variant">
                         <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-on-surface"></span>
@@ -333,7 +582,7 @@
             </div>
         </section>
         <!-- Featured Projects (Bento-style Grid) -->
-        <section class="py-section-gap px-gutter max-w-container-max mx-auto" id="work">
+        <section class="py-section-gap px-gutter max-w-container-max mx-auto section-entrance" id="work">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
                 <div>
                     <p class="font-label-sm text-label-sm text-primary mb-2 uppercase tracking-widest">Portfolio</p>
@@ -345,12 +594,11 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-stack-lg">
                 <!-- Project 1 -->
-                <div class="glass-card rounded-2xl overflow-hidden group">
+                <div class="glass-card project-card rounded-2xl overflow-hidden group">
                     <div class="h-48 bg-surface-container overflow-hidden">
                         <img alt="Multi-Tenant SaaS"
-                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            data-alt="A sophisticated dark-themed user interface for a multi-tenant software-as-a-service platform dashboard. The UI features complex charts, data visualizations in neon blue and purple, and a sidebar navigation. The lighting is moody and cinematic, suggesting a high-performance enterprise tool for large-scale business operations."
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu4O_f_nycMps9yuluNuQIyJ2vnzFRQ3krdupdRSMAAu8PpYuWUdO_gY_T44BWD5issh9opM30RnsnPq08A1lfiX0I7Y2gPUp07PWQHAWu3ikHtm159vnnzL_H-3G2TNYmNl0BGdl6s8k36-bjO-O-leMEnBiKkvpmuyYLvl9m1CwLfZHVC83ismiflYVeyZSaXLUky-lOZX5i6f_BCmQAE5zGQDf33gu13xq-WqzhEGoW1zk85EmtKI2mG9HGWLwDL4JHynjz4Tif" />
+                            class="project-image w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu4O_f_nycMps9yuluNuQIyJ2vnzFRQ3krdupdRSMAAu8PpYuWUdO_gY_T44BWD5issh9opM30RnsnPq08A1lfiX0I7Y2gPUp07PWQHAWu3ikH" />
                     </div>
                     <div class="p-8">
                         <div class="flex gap-2 mb-4">
@@ -369,12 +617,11 @@
                     </div>
                 </div>
                 <!-- Project 2 -->
-                <div class="glass-card rounded-2xl overflow-hidden group">
+                <div class="glass-card project-card rounded-2xl overflow-hidden group">
                     <div class="h-48 bg-surface-container overflow-hidden">
                         <img alt="CRM/ERP System"
-                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            data-alt="A professional enterprise-grade ERP system interface shown on a sleek curved monitor in a dimly lit office. The screen displays financial tables, inventory management modules, and predictive analytics graphs. The overall color palette is a deep indigo and electric cyan, emphasizing a secure and modern corporate environment."
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD01O7y_nMczwZ6nL-Q-JiNUAySW9s5xoKwdGma3jaC3VRmS8597oOYZNs-z0i8AbGcDHyt39BjN10NlPV_l6mY9SHetcIjA1FQIukCDOpWF-ahTE5anlDz71DDMHDfvJ6O4jOtGTmExEyM1cuFU82Bkfd6WrTNR07m4NvxyrF6TQ4pd_JngVG1EpwgTIKFun8Bh0BqRZa80XnD36dxFk18V-lkHHmZgulRfhHFL4SJYnZDdMICWqK8ch7uvw4rACl9NKxBBCBmpc9i" />
+                            class="project-image w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD01O7y_nMczwZ6nL-Q-JiNUAySW9s5xoKwdGma3jaC3VRmS8597oOYZNs-z0i8AbGcDHyt39BjN10NlPV_l6mY9SHetcIjA1FQIukCDOpWF-ah" />
                     </div>
                     <div class="p-8">
                         <div class="flex gap-2 mb-4">
@@ -393,12 +640,11 @@
                     </div>
                 </div>
                 <!-- Project 3 -->
-                <div class="glass-card rounded-2xl overflow-hidden group">
+                <div class="glass-card project-card rounded-2xl overflow-hidden group">
                     <div class="h-48 bg-surface-container overflow-hidden">
                         <img alt="Gym SaaS"
-                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            data-alt="A mobile app design for a premium gym management system. The screen shows user workout stats, membership tiers, and class booking calendars. The aesthetic is high-contrast with dark backgrounds and vibrant yellow highlights, creating an energetic and professional fitness brand vibe."
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNsWfd6eB884UatqBsKEXSJru7tfgfC-Tp6-GOmezN0S-uiL3LKko-r7xFNzI-pHDCYSBgMvl71diWeUlHuQI3DgkAwfkSaCodOoF2_622cwd6a1tFpiFQqLrbNB6C_A46onVJIRdFdWtEuHPeco1sjAsOnaOwg72Z0zF1qLD7NcWSyJnlQISxUA-7C3qOzO67WEsvk4U08HprzcEIb9wScYMaDsqQn5xfFFlZyCSUMBtMKO4A8HBDvyTHJpYNX-uLtl50pWjh8l33" />
+                            class="project-image w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNsWfd6eB884UatqBsKEXSJru7tfgfC-Tp6-GOmezN0S-uiL3LKko-r7xFNzI-pHDCYSBgMvl71diWeUlHuQI3DgkAwfkSaCodOoF2_622cwd6" />
                     </div>
                     <div class="p-8">
                         <div class="flex gap-2 mb-4">
@@ -417,12 +663,11 @@
                     </div>
                 </div>
                 <!-- Project 4 -->
-                <div class="glass-card rounded-2xl overflow-hidden group">
+                <div class="glass-card project-card rounded-2xl overflow-hidden group">
                     <div class="h-48 bg-surface-container overflow-hidden">
                         <img alt="Doctor Queue"
-                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            data-alt="A clean, minimalist healthcare management system UI showing patient queue lists and appointment scheduling. The design uses a calming light blue and slate color palette with generous whitespace. High-resolution rendering of a doctor's workstation with medical data visualization."
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHhpY7rz9XFLgFz_2vncJ3W016NZat95qy1nLCPDNNpkZ99mi-emOMc_WXqCVyo-qk23vMT95w99CBl3rffjoGzq7lgwH41kSJ3SZe4ZHA-lhfKw22F44nUpAUzl8SCJS6KtSMKWGyIpW4b1iucEwnWPq3Hw_bHxKcnY7HJAtKub5zP1ymHRBI0tZ32gbD9-SccJvjBQT0-RQEed6YYPGhs1OH5p213y5RvbM91hDn71pO7Sb8RGQ6_8SfMsiZyboGayYXD00cvB8L" />
+                            class="project-image w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHhpY7rz9XFLgFz_2vncJ3W016NZat95qy1nLCPDNNpkZ99mi-emOMc_WXqCVyo-qk23vMT95w99CBl3rffjoGzq7lgwH41kSJ3SZe4ZHA-lhf" />
                     </div>
                     <div class="p-8">
                         <div class="flex gap-2 mb-4">
@@ -441,12 +686,11 @@
                     </div>
                 </div>
                 <!-- Project 5 -->
-                <div class="glass-card rounded-2xl overflow-hidden group">
+                <div class="glass-card project-card rounded-2xl overflow-hidden group">
                     <div class="h-48 bg-surface-container overflow-hidden">
                         <img alt="Logistics System"
-                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            data-alt="A futuristic logistics and supply chain tracking map on a large digital dashboard. Glowing orange lines represent shipping routes across a world map. The UI includes real-time telemetry from trucks and cargo ships, set against a deep obsidian background for a highly technical feel."
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsMgOhRNuI128QEQAP2xxyAsVUxs-Rb7nCQlZz5L-iKJQfI63Gye3Sun03CBhcTrEfZySGT1GEcx7GUqXklUXaGgYKtFxCZGksjlWZ8O_sJE0Sof_vzGHpwS7InV93qCt7ULnPKk24iTAoIxigFRj-M7VnewHwNuJHk_4Y-sZ2tMFB8y-zIQQ4M33-yfpGCWtD172HHwBt3rylewBIM1FpAhYFUpkxWo3uDsNvmEjJSa_8cKrpCR0QFSRfDpvsdYf_6SfJ8OmFzdv3" />
+                            class="project-image w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsMgOhRNuI128QEQAP2xxyAsVUxs-Rb7nCQlZz5L-iKJQfI63Gye3Sun03CBhcTrEfZySGT1GEcx7GUqXklUXaGgYKtFxCZGksjlWZ8O_sJE0S" />
                     </div>
                     <div class="p-8">
                         <div class="flex gap-2 mb-4">
@@ -465,12 +709,11 @@
                     </div>
                 </div>
                 <!-- Project 6 -->
-                <div class="glass-card rounded-2xl overflow-hidden group">
+                <div class="glass-card project-card rounded-2xl overflow-hidden group">
                     <div class="h-48 bg-surface-container overflow-hidden">
                         <img alt="E-Rickshaw Management"
-                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            data-alt="A technical dashboard for managing a fleet of electric vehicles. The interface displays battery health, charging station locations, and driver revenue logs. The visual style is industrial yet modern, using a dark gray and neon green palette to signify sustainable technology."
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrE_YmPINnr3WDFKXEBB0bW50wAAacS8X1Z0qlBClg--fvcuk9WptP_q46ndJI0eVaGW-f0yaHJ3GYDEA99brmlhFGZKPShmH4s4f31DYbHd-WaXGYf6PyUpZjvHZVn0y-4oZknNK3cadgJMQ-FPE6AsBIeo19Ggc7IEbmrA-QjSegmfgw5eH-IKLSyo_vHA5wtjk9JOWmZK4QZlf3gysWvQiFzoJBGeUIfher7vqi1A27R_IoWvCAmguBec_IG2VUv3C8HRkrzahF" />
+                            class="project-image w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrE_YmPINnr3WDFKXEBB0bW50wAAacS8X1Z0qlBClg--fvcuk9WptP_q46ndJI0eVaGW-f0yaHJ3GYDEA99brmlhFGZKPShmH4s4f31DYbHd-W" />
                     </div>
                     <div class="p-8">
                         <div class="flex gap-2 mb-4">
@@ -491,7 +734,7 @@
             </div>
         </section>
         <!-- Experience Timeline -->
-        <section class="py-section-gap px-gutter bg-surface-container-low" id="experience">
+        <section class="py-section-gap px-gutter bg-surface-container-low section-entrance" id="experience">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-16">
                     <p class="font-label-sm text-label-sm text-primary mb-2 uppercase tracking-widest">Journey</p>
@@ -516,7 +759,7 @@
                         </div>
                         <!-- Node -->
                         <div
-                            class="absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-primary ring-4 ring-primary/20 z-10 group-hover:scale-150 transition-transform">
+                            class="timeline-node absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-primary ring-4 ring-primary/20 z-10">
                         </div>
                         <div class="md:w-[45%]"></div>
                     </div>
@@ -525,7 +768,7 @@
                         <div class="md:w-[45%]"></div>
                         <!-- Node -->
                         <div
-                            class="absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-tertiary ring-4 ring-tertiary/20 z-10 group-hover:scale-150 transition-transform">
+                            class="timeline-node absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-tertiary ring-4 ring-tertiary/20 z-10">
                         </div>
                         <div class="md:w-[45%] mt-8 md:mt-0">
                             <div class="glass-card p-8 rounded-2xl">
@@ -544,44 +787,44 @@
             </div>
         </section>
         <!-- Services -->
-        <section class="py-section-gap px-gutter max-w-container-max mx-auto" id="services">
+        <section class="py-section-gap px-gutter max-w-container-max mx-auto section-entrance" id="services">
             <div class="text-center mb-16">
                 <p class="font-label-sm text-label-sm text-primary mb-2 uppercase tracking-widest">Expertise</p>
                 <h2 class="font-headline-md text-headline-md font-bold">Solutions Provided</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-stack-lg">
-                <div class="p-10 border border-white/5 rounded-3xl hover:bg-white/5 transition-all">
-                    <span class="material-symbols-outlined text-4xl text-primary mb-6">code</span>
+                <div class="service-card p-10 border border-white/5 rounded-3xl">
+                    <span class="material-symbols-outlined text-4xl text-primary mb-6 inline-block">code</span>
                     <h3 class="font-headline-md text-body-lg font-bold mb-4">Custom Web Dev</h3>
                     <p class="font-body-md text-on-surface-variant">Tailor-made web applications built with the latest
                         technologies for maximum performance.</p>
                 </div>
-                <div class="p-10 border border-white/5 rounded-3xl hover:bg-white/5 transition-all">
-                    <span class="material-symbols-outlined text-4xl text-secondary mb-6">cloud_upload</span>
+                <div class="service-card p-10 border border-white/5 rounded-3xl">
+                    <span class="material-symbols-outlined text-4xl text-secondary mb-6 inline-block">cloud_upload</span>
                     <h3 class="font-headline-md text-body-lg font-bold mb-4">SaaS Development</h3>
                     <p class="font-body-md text-on-surface-variant">Scalable multi-tenant architectures designed to grow
                         with your user base.</p>
                 </div>
-                <div class="p-10 border border-white/5 rounded-3xl hover:bg-white/5 transition-all">
-                    <span class="material-symbols-outlined text-4xl text-tertiary mb-6">api</span>
+                <div class="service-card p-10 border border-white/5 rounded-3xl">
+                    <span class="material-symbols-outlined text-4xl text-tertiary mb-6 inline-block">api</span>
                     <h3 class="font-headline-md text-body-lg font-bold mb-4">API Development</h3>
                     <p class="font-body-md text-on-surface-variant">Robust, secure, and well-documented REST &amp;
                         GraphQL APIs for seamless integrations.</p>
                 </div>
-                <div class="p-10 border border-white/5 rounded-3xl hover:bg-white/5 transition-all">
-                    <span class="material-symbols-outlined text-4xl text-primary mb-6">dashboard_customize</span>
+                <div class="service-card p-10 border border-white/5 rounded-3xl">
+                    <span class="material-symbols-outlined text-4xl text-primary mb-6 inline-block">dashboard_customize</span>
                     <h3 class="font-headline-md text-body-lg font-bold mb-4">Admin Panels</h3>
                     <p class="font-body-md text-on-surface-variant">Data-driven back-office tools for efficient business
                         management and monitoring.</p>
                 </div>
-                <div class="p-10 border border-white/5 rounded-3xl hover:bg-white/5 transition-all">
-                    <span class="material-symbols-outlined text-4xl text-secondary mb-6">storage</span>
+                <div class="service-card p-10 border border-white/5 rounded-3xl">
+                    <span class="material-symbols-outlined text-4xl text-secondary mb-6 inline-block">storage</span>
                     <h3 class="font-headline-md text-body-lg font-bold mb-4">Database Design</h3>
                     <p class="font-body-md text-on-surface-variant">Optimized schema design and query tuning for
                         ultra-fast data retrieval.</p>
                 </div>
-                <div class="p-10 border border-white/5 rounded-3xl hover:bg-white/5 transition-all">
-                    <span class="material-symbols-outlined text-4xl text-tertiary mb-6">smart_toy</span>
+                <div class="service-card p-10 border border-white/5 rounded-3xl">
+                    <span class="material-symbols-outlined text-4xl text-tertiary mb-6 inline-block">smart_toy</span>
                     <h3 class="font-headline-md text-body-lg font-bold mb-4">Automation</h3>
                     <p class="font-body-md text-on-surface-variant">Automating repetitive business processes through
                         custom scripts and worker queues.</p>
@@ -589,57 +832,51 @@
             </div>
         </section>
         <!-- Tech Stack -->
-        <section class="py-section-gap px-gutter bg-surface-container-lowest border-y border-white/5" id="stack">
+        <section class="py-section-gap px-gutter bg-surface-container-lowest border-y border-white/5 section-entrance" id="stack">
             <div class="max-w-container-max mx-auto text-center">
                 <p class="font-label-sm text-label-sm text-primary mb-2 uppercase tracking-widest">Technologies</p>
                 <h2 class="font-headline-md text-headline-md font-bold mb-16">Core Stack</h2>
                 <div
                     class="flex flex-wrap justify-center gap-12 grayscale opacity-50 hover:opacity-100 transition-opacity">
                     <!-- Tech icons representation -->
-                    <div
-                        class="flex flex-col items-center gap-2 group cursor-pointer hover:scale-110 transition-transform">
+                    <div class="tech-item flex flex-col items-center gap-2 group cursor-pointer">
                         <div
-                            class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                            class="tech-icon w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center transition-colors">
                             <span class="material-symbols-outlined text-3xl">language</span>
                         </div>
                         <span class="font-label-sm text-label-sm">Laravel</span>
                     </div>
-                    <div
-                        class="flex flex-col items-center gap-2 group cursor-pointer hover:scale-110 transition-transform">
+                    <div class="tech-item flex flex-col items-center gap-2 group cursor-pointer">
                         <div
-                            class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                            class="tech-icon w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center transition-colors">
                             <span class="material-symbols-outlined text-3xl">javascript</span>
                         </div>
                         <span class="font-label-sm text-label-sm">Node.js</span>
                     </div>
-                    <div
-                        class="flex flex-col items-center gap-2 group cursor-pointer hover:scale-110 transition-transform">
+                    <div class="tech-item flex flex-col items-center gap-2 group cursor-pointer">
                         <div
-                            class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                            class="tech-icon w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center transition-colors">
                             <span class="material-symbols-outlined text-3xl">data_object</span>
                         </div>
                         <span class="font-label-sm text-label-sm">Next.js</span>
                     </div>
-                    <div
-                        class="flex flex-col items-center gap-2 group cursor-pointer hover:scale-110 transition-transform">
+                    <div class="tech-item flex flex-col items-center gap-2 group cursor-pointer">
                         <div
-                            class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                            class="tech-icon w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center transition-colors">
                             <span class="material-symbols-outlined text-3xl">developer_board</span>
                         </div>
                         <span class="font-label-sm text-label-sm">AWS</span>
                     </div>
-                    <div
-                        class="flex flex-col items-center gap-2 group cursor-pointer hover:scale-110 transition-transform">
+                    <div class="tech-item flex flex-col items-center gap-2 group cursor-pointer">
                         <div
-                            class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                            class="tech-icon w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center transition-colors">
                             <span class="material-symbols-outlined text-3xl">layers</span>
                         </div>
                         <span class="font-label-sm text-label-sm">Docker</span>
                     </div>
-                    <div
-                        class="flex flex-col items-center gap-2 group cursor-pointer hover:scale-110 transition-transform">
+                    <div class="tech-item flex flex-col items-center gap-2 group cursor-pointer">
                         <div
-                            class="w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                            class="tech-icon w-16 h-16 bg-surface-container rounded-2xl flex items-center justify-center transition-colors">
                             <span class="material-symbols-outlined text-3xl">account_tree</span>
                         </div>
                         <span class="font-label-sm text-label-sm">Git</span>
@@ -648,8 +885,8 @@
             </div>
         </section>
         <!-- Contact Section -->
-        <section class="py-section-gap px-gutter max-w-container-max mx-auto text-center" id="contact">
-            <div class="max-w-2xl mx-auto glass-card p-12 md:p-20 rounded-[3rem] relative overflow-hidden">
+        <section class="py-section-gap px-gutter max-w-container-max mx-auto text-center section-entrance" id="contact">
+            <div class="max-w-2xl mx-auto glass-card p-12 md:p-20 rounded-[3rem] relative overflow-hidden glow">
                 <div class="relative z-10">
                     <h2 class="font-display-lg-mobile text-display-lg-mobile font-bold mb-6">Let's build something <span
                             class="gradient-text">extraordinary</span>.</h2>
@@ -657,15 +894,15 @@
                         I'm currently available for freelance projects and high-impact engineering roles.
                     </p>
                     <div class="flex flex-wrap justify-center gap-stack-md">
-                        <a class="flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-primary hover:text-on-primary transition-all"
+                        <a class="btn-3d flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-primary hover:text-on-primary transition-all"
                             href="mailto:arshad@example.com">
                             <span class="material-symbols-outlined">mail</span> Email Me
                         </a>
-                        <a class="flex items-center gap-3 border border-white/10 px-8 py-4 rounded-full font-bold hover:bg-white/5 transition-all"
+                        <a class="btn-3d flex items-center gap-3 border border-white/10 px-8 py-4 rounded-full font-bold hover:bg-white/5 transition-all"
                             href="#">
                             <span class="material-symbols-outlined">link</span> LinkedIn
                         </a>
-                        <a class="flex items-center gap-3 border border-white/10 px-8 py-4 rounded-full font-bold hover:bg-white/5 transition-all"
+                        <a class="btn-3d flex items-center gap-3 border border-white/10 px-8 py-4 rounded-full font-bold hover:bg-white/5 transition-all"
                             href="#">
                             <span class="material-symbols-outlined">chat</span> WhatsApp
                         </a>
@@ -682,7 +919,7 @@
         <div
             class="flex flex-col md:flex-row justify-between items-center px-gutter max-w-container-max mx-auto gap-stack-md">
             <p class="font-label-sm text-label-sm text-on-surface-variant text-center md:text-left">© 2024 Arshad Khan.
-                Built with precision.</p>
+                Built with precision & 3D magic. ✨</p>
             <div class="flex gap-8">
                 <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline-offset-4 hover:underline transition-all duration-200"
                     href="#">Github</a>
@@ -698,41 +935,67 @@
     <!-- Interactive Spotlight Effect -->
     <div class="spotlight hidden md:block" id="spotlight"></div>
     <script>
-        // Spotlight follow cursor
+        // ===== SCROLL PROGRESS BAR =====
+        const scrollProgress = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            const height = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / height) * 100;
+            scrollProgress.style.width = scrolled + '%';
+        });
+
+        // ===== CURSOR GLOW EFFECT =====
+        const cursorGlow = document.getElementById('cursorGlow');
+        document.addEventListener('mousemove', (e) => {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
+        });
+
+        // ===== SPOTLIGHT FOLLOW CURSOR =====
         const spotlight = document.getElementById('spotlight');
         document.addEventListener('mousemove', (e) => {
             spotlight.style.left = e.clientX + 'px';
             spotlight.style.top = e.clientY + 'px';
         });
 
-        // Intersection Observer for fade-in animations
+        // ===== PARALLAX EFFECT =====
+        const parallaxElements = document.querySelectorAll('.parallax');
+        window.addEventListener('scroll', () => {
+            parallaxElements.forEach((el) => {
+                const scrollPosition = window.scrollY;
+                const elementPosition = el.getBoundingClientRect().top;
+                const offset = (elementPosition / 10);
+                el.style.transform = `translateY(${offset}px)`;
+            });
+        });
+
+        // ===== SECTION ENTRANCE ANIMATION =====
         const observerOptions = {
-            threshold: 0.1
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('opacity-100');
-                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('section').forEach(section => {
-            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+        document.querySelectorAll('.section-entrance').forEach(section => {
             observer.observe(section);
         });
 
-        // Smooth active navigation highlight
-        const navLinks = document.querySelectorAll('nav a');
+        // ===== SMOOTH ACTIVE NAVIGATION HIGHLIGHT =====
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
         const sections = document.querySelectorAll('section[id]');
 
         window.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 100) {
+                if (pageYOffset >= sectionTop - 200) {
                     current = section.getAttribute('id');
                 }
             });
@@ -746,6 +1009,47 @@
                 }
             });
         });
+
+        // ===== 3D ROTATION EFFECT ON MOUSE MOVE =====
+        const cards = document.querySelectorAll('.glass-card, .project-card, .service-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const rotateX = ((y / rect.height) - 0.5) * 5;
+                const rotateY = ((x / rect.width) - 0.5) * 5;
+
+                card.style.setProperty('--rotateX', rotateX + 'deg');
+                card.style.setProperty('--rotateY', rotateY + 'deg');
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.setProperty('--rotateX', '0deg');
+                card.style.setProperty('--rotateY', '0deg');
+            });
+        });
+
+        // ===== SMOOTH SCROLL ANCHOR LINKS =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ===== FLOATING ANIMATION FOR HERO TEXT =====
+        const heroTitle = document.querySelector('.hero-title');
+        if (heroTitle) {
+            heroTitle.style.animation = 'titleFloat 3s ease-in-out infinite';
+        }
     </script>
 </body>
 
